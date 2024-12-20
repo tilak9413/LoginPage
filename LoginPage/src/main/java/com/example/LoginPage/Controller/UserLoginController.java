@@ -6,6 +6,9 @@ import com.example.LoginPage.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/login")
 public class UserLoginController {
@@ -30,5 +33,10 @@ public class UserLoginController {
     @DeleteMapping("/deleteUser")
     public CommonRespModal deleteUser(@RequestBody LoginModelUser loginModelUser) {
         return loginService.deleteUser(loginModelUser);
+    }
+
+    @GetMapping("/{userId}/kyc-details")
+    public List<Map<String, Object>> getLoginWithKyc(@PathVariable Integer userId) {
+        return loginService.getLoginWithKycDetails(userId);
     }
 }

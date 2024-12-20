@@ -7,11 +7,12 @@ import com.example.LoginPage.Model.LoginModelUser;
 import com.example.LoginPage.Repository.KycRepository;
 import com.example.LoginPage.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.OptimisticLockingFailureException;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -104,5 +105,10 @@ public class LoginService {
     response.setMessage("User deleted successfully.");
     response.setStatus("SUCCESS");
     return response;
+  }
+
+
+  public List<Map<String, Object>> getLoginWithKycDetails(Integer userId) {
+    return userRepo.getLoginWithKyc(userId);
   }
 }
